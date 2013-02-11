@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DelegateTest", "DelegateTest.vcxproj", "{24F64C7D-61E2-4914-A573-341B2CB3CA8F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DelegateMulticastTest", "DelegateMulticastTest.vcxproj", "{7BD9D5CB-CFA9-4C7D-AED4-A61A48B71C0B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{24F64C7D-61E2-4914-A573-341B2CB3CA8F} = {24F64C7D-61E2-4914-A573-341B2CB3CA8F}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24F64C7D-61E2-4914-A573-341B2CB3CA8F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{24F64C7D-61E2-4914-A573-341B2CB3CA8F}.Debug|Win32.Build.0 = Debug|Win32
+		{24F64C7D-61E2-4914-A573-341B2CB3CA8F}.Release|Win32.ActiveCfg = Release|Win32
+		{24F64C7D-61E2-4914-A573-341B2CB3CA8F}.Release|Win32.Build.0 = Release|Win32
+		{7BD9D5CB-CFA9-4C7D-AED4-A61A48B71C0B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7BD9D5CB-CFA9-4C7D-AED4-A61A48B71C0B}.Debug|Win32.Build.0 = Debug|Win32
+		{7BD9D5CB-CFA9-4C7D-AED4-A61A48B71C0B}.Release|Win32.ActiveCfg = Release|Win32
+		{7BD9D5CB-CFA9-4C7D-AED4-A61A48B71C0B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

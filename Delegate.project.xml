@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+	<!-- The Basics -->
+	<groupId>dsLib</groupId>
+	<artifactId>Delegate</artifactId>
+	<uuid>{3248229F-9E23-4d88-A1E9-5B504A64D7A2}</uuid>
+	<version>0.8</version>
+	<packaging>pom</packaging>
+	<properties>
+		<language>C++</language>
+	</properties>
+	
+	<!-- More Project Information -->
+	<name>TypeInfo</name>
+	<description>A Delegate and Multicast Delegate C++ library.</description>
+	<inceptionYear>2012</inceptionYear>
+	<licenses>
+	  <license>
+		<name>MIT License</name>
+		<url>http://opensource.org/licenses/MIT</url>
+	  </license>
+	</licenses>
+	<developers>
+		<developer>
+			<id>julien.duminil</id>
+			<name>Julien Duminil</name>
+			<email>julien.duminil@gmail.com</email>
+		</developer>
+	</developers>
+</project>
