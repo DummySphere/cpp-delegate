@@ -1,7 +1,7 @@
 // DelegateMulticast.h, 2013-02-10 19:05:00
 // Multicast Delegate C++ class
 // Copyright (c) 2012-2013 Julien Duminil
-// This file is licensed under the MIT License (http://opensource.org/licenses/MIT)
+// This file is released under the MIT License (http://opensource.org/licenses/MIT)
 
 #ifndef __DELEGATEMULTICAST_H__
 #define __DELEGATEMULTICAST_H__

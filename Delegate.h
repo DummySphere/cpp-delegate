@@ -1,7 +1,7 @@
 // Delegate.h, 2013-02-11 12:32:00
 // Delegate C++ class
-// Copyright (c) 2012-2013 Julien Duminil
-// This file is licensed under the MIT License (http://opensource.org/licenses/MIT)
+// Copyright (c) 2007-2013 Julien Duminil
+// This file is released under the MIT License (http://opensource.org/licenses/MIT)
 
 #ifndef __DELEGATE_H__
 #define __DELEGATE_H__

@@ -1,7 +1,7 @@
 // static_va.h, 2013-02-10 18:30:00
 // STATIC_VA - C++ macro utilities to statically expand a code with variable argument count
 // Copyright (c) 2012-2013 Julien Duminil
-// This file is licensed under the MIT License (http://opensource.org/licenses/MIT)
+// This file is released under the MIT License (http://opensource.org/licenses/MIT)
 
 #ifndef __STATIC_VA_H__
 #define __STATIC_VA_H__
