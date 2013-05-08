@@ -1,4 +1,4 @@
-// Delegate.h, 2013-02-11 12:32:00
+// Delegate.h, 2013-05-08 20:40:00
 // Delegate C++ class
 // Copyright (c) 2007-2013 Julien Duminil
 // This file is released under the MIT License (http://opensource.org/licenses/MIT)
@@ -86,11 +86,11 @@ namespace Delegate
 			inline bool IsEmpty() const { return m_object == NULL; }\
 			inline int Compare(const Method &_other) const\
 			{\
-				int diff = memcmp(&m_object, &m_object, sizeof(T *) );\
+				int diff = memcmp(&_other.m_object, &m_object, sizeof(T *) );\
 				if(diff != 0)\
 					return diff;\
 				else\
-					return memcmp(&m_methodPtr, &m_methodPtr, sizeof(MethodPtr) );\
+					return memcmp(&_other.m_methodPtr, &m_methodPtr, sizeof(MethodPtr) );\
 			}\
 			\
 		private:\
@@ -145,31 +145,71 @@ namespace Delegate
 			static_assert(_BufferSize >= sizeof(void *), "Buffer size must be big enough to contain a pointer !");
 			char m_buffer[_BufferSize];
 			
+			template<bool _InPlace>
+			struct InPlace;
+
+			// in place
+			template<>
+			struct InPlace<true>
+			{
+				template<typename T>
+				static inline void construct(char *_buffer, const T &_value)
+				{
+					new (reinterpret_cast<void *>(_buffer)) T(_value);
+				}
+
+				template<typename T>
+				static inline void destruct(char *_buffer)
+				{
+					reinterpret_cast<T *>(_buffer)->~T();
+				}
+
+				template<typename T>
+				static inline T &reference(char *_buffer)
+				{
+					return *reinterpret_cast<T *>(_buffer);
+				}
+			};
+
+			// new/delete
+			template<>
+			struct InPlace<false>
+			{
+				template<typename T>
+				static inline void construct(char *_buffer, const T &_value)
+				{
+					*reinterpret_cast<T **>(_buffer) = new T(_value);
+				}
+
+				template<typename T>
+				static inline void destruct(char *_buffer)
+				{
+					delete *reinterpret_cast<T **>(_buffer);
+				}
+
+				template<typename T>
+				static inline T &reference(char *_buffer)
+				{
+					return **reinterpret_cast<T **>(_buffer);
+				}
+			};
+
 			template<typename T>
 			inline void construct(const T &_value)
 			{
-				if(sizeof(T) > sizeof(_BufferSize))
-					reinterpret_cast<T *&>(m_buffer) = new T(_value);
-				else
-					new (reinterpret_cast<void *>(m_buffer)) T(_value);
+				InPlace<(sizeof(T) <= _BufferSize)>::construct<T>(m_buffer, _value);
 			}
 			
 			template<typename T>
 			inline void destruct()
 			{
-				if(sizeof(T) > sizeof(_BufferSize))
-					delete reinterpret_cast<T *&>(m_buffer);
-				else
-					reinterpret_cast<T *>(m_buffer)->~T();
+				InPlace<(sizeof(T) <= _BufferSize)>::destruct<T>(m_buffer);
 			}
 			
 			template<typename T>
 			inline T &reference()
 			{
-				if(sizeof(T) > sizeof(_BufferSize))
-					return *reinterpret_cast<T *&>(m_buffer);
-				else
-					return *reinterpret_cast<T *>(m_buffer);
+				return InPlace<(sizeof(T) <= _BufferSize)>::reference<T>(m_buffer);
 			}
 			
 			template<typename T>
